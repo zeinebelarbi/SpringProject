@@ -1,0 +1,42 @@
+package com.example.demo;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+import com.example.demo.dao.OutilRepository;
+import com.example.demo.entities.Outil;
+import com.example.demo.service.IoutilService;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+public class OutilApplication implements CommandLineRunner {
+	@Autowired 
+	 OutilRepository outilRepository ;
+	@Autowired 
+	 IoutilService outilservice;
+	public static void main(String[] args) {
+		SpringApplication.run(OutilApplication.class, args);
+		
+		} 
+			
+	
+	@Override
+	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		SimpleDateFormat dateFormatter =new SimpleDateFormat("yyyy-MM-dd");
+		Date date1 = dateFormatter.parse("2010-05-01");
+		Date date2 = dateFormatter.parse("2019-05-01");
+		
+		Outil o1 = new Outil(date1,"source 1");
+		outilRepository.save(o1);
+		
+		Outil o2 = new Outil(date2, " source 2 ");
+		outilRepository.save(o2);
+	}
+}

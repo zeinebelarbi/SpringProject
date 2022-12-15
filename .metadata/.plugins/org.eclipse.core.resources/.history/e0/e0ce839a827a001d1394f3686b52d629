@@ -1,0 +1,61 @@
+package com.example.demo.web;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.entities.Etudiant;
+import com.example.demo.entities.Membre;
+import com.example.demo.entities.Publication;
+import com.example.demo.service.IPublicationService;
+
+public class PublicationRestController {
+	@Autowired
+	IPublicationService Publicationservice;
+	@RequestMapping(value="/publications", method=RequestMethod.GET)
+	public List<Publication> findMembres (){
+	return Publicationservice.findAll();
+	}
+	@GetMapping(value="/publications/{id}")
+	public Publication findOneMemberById(@PathVariable Long id){
+	return  Publicationservice.findPublication(id);
+	}
+	@GetMapping(value="/publications/search/type")
+	public Publication  findByType(@RequestParam String type)
+	{
+	return Publicationservice.findByType(type);
+	}
+	public List<Publication> findByTitre(String Titre){
+		return Publicationservice.findByTitre(Titre);
+		}
+	public List<Publication> findByLien(String lien){
+		return Publicationservice.findByLien(lien);
+		}
+	public List<Publication> findBySourcepdf(String Sourcepdf){
+		return Publicationservice.findBySourcepdf(Sourcepdf);
+	}
+	public List<Publication> findBySourcepdfOrderByDate(String Sourcepdf){
+		return Publicationservice.findBySourcepdfOrderByDate(Sourcepdf);
+	}
+	public void deletePublication(@PathVariable Long id)
+	{
+		Publicationservice.deletePublication(id);
+	}
+	@PostMapping(value="/publications/etudiant")
+	public Publication addPublication(@RequestBody Publication p)
+	{
+	return Publicationservice.addPublication(p);
+	}
+}
+
+
+
+
+

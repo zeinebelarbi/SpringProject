@@ -1,0 +1,22 @@
+package com.example.demo.service;
+
+import java.util.List;
+
+import com.example.demo.entities.Evenement;
+
+
+
+public interface IevenementService {
+	
+	public void deleteEvenement(Long Date) ;
+	public Evenement updateEvenement(Evenement ev) ;
+	public Evenement findEvenement(Long Date) ;
+	public List<Evenement> findAll();
+
+	public Evenement findByTitre(String Titre);
+	
+	public List<Evenement> findByLieu(String lieu);
+	Evenement addEvenement(Evenement ev);
+	
+	
+}

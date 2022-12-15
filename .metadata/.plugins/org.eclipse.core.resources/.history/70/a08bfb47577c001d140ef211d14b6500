@@ -1,0 +1,53 @@
+package com.example.demo.entities;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name= "type_mbr", discriminatorType= DiscriminatorType.STRING,length = 3)
+public class Outil implements Serializable{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long Id;
+	private Date Date ;
+	private String  source;
+	public Outil() {
+		super();
+	}
+	public Outil(long id, java.util.Date date, String source) {
+		super();
+		Id = id;
+		Date = date;
+		this.source = source;
+	}
+	public long getId() {
+		return Id;
+	}
+	public void setId(long id) {
+		Id = id;
+	}
+	public Date getDate() {
+		return Date;
+	}
+	public void setDate(Date date) {
+		Date = date;
+	}
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
+	}
+	
+	}
+	

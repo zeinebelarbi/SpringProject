@@ -1,0 +1,4 @@
+
+spring.application.name=evenement-service
+spring.cloud.config.uri=http://localhost:8880
+server.port=8082  

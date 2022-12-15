@@ -1,0 +1,63 @@
+package com.example.demo.entities;
+
+
+import java.io.Serializable;
+import java.util.Date;
+
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+
+
+@Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name= "type_evn", discriminatorType= DiscriminatorType.STRING,length = 3)
+
+public abstract class Evenement implements Serializable {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long Id;
+	private String Titre;
+	private Date Date ;
+	private String 	Lieu ;
+	public Evenement() {
+		super();
+	}
+	public Evenement(Long id, String titre, java.util.Date date, String lieu) {
+		super();
+		Id = id;
+		Titre = titre;
+		Date = date;
+		Lieu = lieu;
+	}
+	public Long getId() {
+		return Id;
+	}
+	public void setId(Long id) {
+		Id = id;
+	}
+	public String getTitre() {
+		return Titre;
+	}
+	public void setTitre(String titre) {
+		Titre = titre;
+	}
+	public Date getDate() {
+		return Date;
+	}
+	public void setDate(Date date) {
+		Date = date;
+	}
+	public String getLieu() {
+		return Lieu;
+	}
+	public void setLieu(String lieu) {
+		Lieu = lieu;
+	}
+
+}

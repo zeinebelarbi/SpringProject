@@ -1,0 +1,63 @@
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.dao.EvenementRepository;
+import com.example.demo.entities.Evenement;
+
+@Service
+public class EvenementIev implements IevenementService{
+	@Autowired
+	EvenementRepository evenementRepository;
+
+	@Override
+	public Evenement addEvenement(Evenement ev) {
+		
+		return evenementRepository.save(ev) ;
+	}
+
+	@Override
+	public void deleteEvenement(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Evenement updateEvenement(Evenement ev) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Evenement findEvenement(Long Date) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Evenement> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Evenement findByTitre(String Titre) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Evenement> findByLieu(String lieu) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Evenement addMember(Evenement ev) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

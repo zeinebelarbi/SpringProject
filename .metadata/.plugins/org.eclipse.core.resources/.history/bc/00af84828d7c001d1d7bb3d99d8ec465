@@ -1,0 +1,17 @@
+package com.example.demo.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.entities.Publication;
+
+@Repository
+public interface PublicationRepository extends JpaRepository<Publication, 
+Long>{
+	Publication findByType(String type);
+	
+	java.util.List<Publication>findByTitre(String Titre);
+	java.util.List<Publication>findByLien(String lien);
+	java.util.List<Publication>findBySourcepdf(String Sourcepdf);
+	java.util.List<Publication>findBySourcepdfOrderByDate(String Sourcepdf );
+}

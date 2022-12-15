@@ -1,0 +1,54 @@
+package com.example.demo;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+import com.example.demo.dao.PublicationRepository;
+
+import com.example.demo.entities.Publication;
+import com.example.demo.service.IPublicationService;
+
+
+@SpringBootApplication
+@EnableDiscoveryClient
+
+public class PublicationApplication  implements CommandLineRunner {
+	@Autowired
+	PublicationRepository publicationRepository;
+	@Autowired
+	IPublicationService publicationservice;
+	public static void main(String[] args)  {
+		SpringApplication.run(PublicationApplication.class, args);
+	}
+	@Override
+	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		SpringApplication.run(PublicationApplication.class, args);
+		SimpleDateFormat dateFormatter =new SimpleDateFormat("yyyy-MM-dd");
+		Date date1 = dateFormatter.parse("2012-05-22");
+		Date date2 = dateFormatter.parse("2022-05-01");
+		Publication pub1= new Publication ("type1","Biologie", "www.bio.com", date1 ,"PDF1")  ;
+		Publication pub2= new Publication ("type2","Mathématique", "www.mathé.com", date2,"PDF2") ;
+		publicationRepository.save(pub1);
+		publicationRepository.save(pub2);
+		Publication p=publicationRepository.findById(2L).get();
+		p.setType("Physics");
+		publicationRepository.save(p);
+		publicationRepository.deleteById(2L);
+		
+		List<Publication> list=publicationservice.findAll();
+		
+		for(Publication p1:list)
+			System.out.println(p1.getLien()+" "+p1.getSourcepdf());
+	
+		
+	}
+
+}

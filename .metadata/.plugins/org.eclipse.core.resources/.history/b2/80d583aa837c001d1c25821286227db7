@@ -1,0 +1,40 @@
+package com.example.demo;
+
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+import com.example.demo.dao.EvenementRepository;
+import com.example.demo.entities.Evenement;
+import com.example.demo.entities.Publication;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+public class EvenementApplication implements CommandLineRunner  {
+	@Autowired
+	EvenementRepository evenementRepository ;
+	public static void main(String[] args) {
+		SpringApplication.run(EvenementApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		SimpleDateFormat dateFormatter =new SimpleDateFormat("yyyy-MM-dd");
+		java.util.Date date1 = dateFormatter.parse("2010-05-02");
+		java.util.Date date2 = dateFormatter.parse("2019-05-03");
+		Evenement event1 = new Evenement( "JPO", date1, "ENIS");
+		evenementRepository.save(event1);
+		Evenement event2 = new Evenement("Forum", date2, "ENIS");
+		evenementRepository.save(event2);
+
+	
+	}
+
+}
